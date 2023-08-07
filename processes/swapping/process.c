@@ -45,7 +45,7 @@ int main() {
         }
         memset(p, 1, MALLOCATE_SIZE);
 
-        int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY);
+        int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY, S_IRUSR);
 
         sleep(60);
         /* и не забудем освободить, чтобы память не утекала */

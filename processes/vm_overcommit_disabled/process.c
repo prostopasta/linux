@@ -44,7 +44,7 @@ int main() {
             exit(2);
         }
 
-        int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY);
+        int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY, S_IRUSR);
 
         sleep(60);
         /* и не забудем освободить, чтобы память не утекала */
