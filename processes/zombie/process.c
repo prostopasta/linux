@@ -6,7 +6,7 @@
 #include "limits.h"
 #include "string.h"
 
-#define MALLOCATE_SIZE вставьте сюда размер в байтах из вывода free
+#define MALLOCATE_SIZE 130048
 
 /* родительский процесс начнёт выполняться с функции main() */
 int main() {
@@ -15,7 +15,6 @@ int main() {
 
     /* создаём новый процесс */
     pid_t child_pid = fork();
-
     if (child_pid == 0) {
         /* дочернему процессу вернулся 0 */
         printf("Приветики от дочернего процесса!\n");
@@ -30,11 +29,6 @@ int main() {
         printf("PID дочернего процесса: %d\n", child_pid);
         printf("Подождём, что он нам ответит\n");
 
-        /* родитель может узнать, всё ли у него хорошо */
-        int status;
-        waitpid(child_pid, &status, 0);
-        printf("Всё ли у него хорошо? Код возврата: %d (хорошо, если 0)\n", status);
-
         /* выделим немного памяти в куче (heap) */
         void *p = malloc(MALLOCATE_SIZE);
 
@@ -47,7 +41,7 @@ int main() {
         int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY);
 
         sleep(60);
-        /* и не забудем освободить, чтобы память не утекала */
+        /* и не забудем освободить ресурсы, чтобы память не утекала */
         free(p);
         close(fd);
     }

@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "unistd.h"
 #include <sys/wait.h>
+#include <sys/fcntl.h>
 #include "limits.h"
 #include "string.h"
 
@@ -14,7 +15,6 @@ int main() {
 
     /* создаём новый процесс */
     pid_t child_pid = fork();
-
     if (child_pid == 0) {
         /* дочернему процессу вернулся 0 */
         printf("Приветики от дочернего процесса!\n");
@@ -42,9 +42,13 @@ int main() {
             printf("ERROR: Не удалось выделить память\n");
             exit(2);
         }
+
+        int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY);
+
         sleep(60);
-        /* и не забудем освободить, чтобы память не утекала */
+        /* и не забудем освободить ресурсы, чтобы память не утекала */
         free(p);
+        close(fd);
     }
 
     return 0;

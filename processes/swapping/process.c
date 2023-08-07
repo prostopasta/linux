@@ -2,6 +2,7 @@
 #include "stdlib.h"
 #include "unistd.h"
 #include <sys/wait.h>
+#include <sys/fcntl.h>
 #include "limits.h"
 #include "string.h"
 
@@ -43,9 +44,13 @@ int main() {
             exit(2);
         }
         memset(p, 1, MALLOCATE_SIZE);
+
+        int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY);
+
         sleep(60);
         /* и не забудем освободить, чтобы память не утекала */
         free(p);
+        close(fd);
     }
 
     return 0;
