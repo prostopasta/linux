@@ -6,10 +6,11 @@
 #include "limits.h"
 #include "string.h"
 
-#define MALLOCATE_SIZE 130048
+#define MALLOCATE_SIZE UINT_MAX
 
 /* родительский процесс начнёт выполняться с функции main() */
 int main() {
+    int i;
     pid_t parent_pid = getpid();
     printf("PID родительского процесса: %d\n", parent_pid);
 
@@ -41,7 +42,19 @@ int main() {
         if (p == NULL) {
             printf("ERROR: Не удалось выделить память\n");
             exit(2);
-        }
+        } else {
+	    printf("Выделено памяти: %u байт\n", MALLOCATE_SIZE);
+	}
+	
+	for (i = 10; i > 0; i--) {
+	    printf("Ждем %d секунд..\r", i);
+	    sleep(1);
+	}
+
+	printf("Начинаем заполнять память..\n");
+
+	memset(p, 1, MALLOCATE_SIZE);
+	printf("Заполнили всю выделенную память!\n");
 
         int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY, S_IRUSR);
 
