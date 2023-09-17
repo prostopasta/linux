@@ -42,16 +42,16 @@ int main() {
             printf("ERROR: Не удалось выделить память\n");
             exit(2);
         } else {
-	    printf("Выделено памяти: %li байт\n", MALLOCATE_SIZE);
-	}
-	
-	printf("Ожидаем 10 секунд\n");
-	sleep(10);
-	
-	printf("Начинаем заполнять память..\n");
+        printf("Выделено памяти: %li байт\n", MALLOCATE_SIZE);
+        }
 
-	memset(p, 1, MALLOCATE_SIZE);
-	printf("Заполнили всю выделенную память!\n");
+        printf("Ожидаем 10 секунд\n");
+        sleep(10);
+        
+        printf("Начинаем заполнять память..\n");
+
+        memset(p, 1, MALLOCATE_SIZE);
+        printf("Заполнили всю выделенную память!\n");
 
         int fd = open("/tmp/process.txt", O_CREAT | O_RDONLY, S_IRUSR);
 
