@@ -30,9 +30,9 @@ int main() {
         printf("Подождём, что он нам ответит\n");
 
         /* родитель может узнать, всё ли у него хорошо */
-        int status;
-        waitpid(child_pid, &status, 0);
-        printf("Всё ли у него хорошо? Код возврата: %d (хорошо, если 0)\n", status);
+        //int status;
+        //waitpid(child_pid, &status, 0);
+        //printf("Всё ли у него хорошо? Код возврата: %d (хорошо, если 0)\n", status);
 
         /* выделим немного памяти в куче (heap) */
         void *p = malloc(MALLOCATE_SIZE);
