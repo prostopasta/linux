@@ -42,7 +42,7 @@ int main() {
             printf("ERROR: Не удалось выделить память\n");
             exit(2);
         } else {
-	    printf("Выделено памяти: %u байт\n", MALLOCATE_SIZE);
+	    printf("Выделено памяти: %li байт\n", MALLOCATE_SIZE);
 	}
 	
 	printf("Ожидаем 10 секунд\n");
