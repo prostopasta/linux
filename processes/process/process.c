@@ -6,7 +6,7 @@
 #include "limits.h"
 #include "string.h"
 
-#define MALLOCATE_SIZE UINT_MAX
+#define MALLOCATE_SIZE 4110356480
 
 /* родительский процесс начнёт выполняться с функции main() */
 int main() {
